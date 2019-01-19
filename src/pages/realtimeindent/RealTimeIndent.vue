@@ -12,16 +12,6 @@
           </div>
         </div>
       </div>
-      <!--全部的弹出框-->
-      <div  class="fade" :class="{'fade': isDisplayAll == showModelAll }" v-show="isDisplayAll">
-        <div class="model">
-          <div class="creadlist">是否将货物出库</div>
-          <div class="btomBtn">
-            <button type="button" value="是" class="btn btn1" @click="creadListAll">是</button>
-            <button type="button" value="否" class="btn btn2" @click="handleCancel">否</button>
-          </div>
-        </div>
-      </div>
       <Button @click="showModelAll">全部出库</Button>
     </div>
   </div>
@@ -154,7 +144,16 @@ export default {
       this.RealtimeList.map((item) => {
         this.selectionList.push(item.id)
       })
-      this.isDisplayAll = true
+      this.$Modal.confirm({
+        title: '提示',
+        content: '<p>您是否要对选中商品进行出库操作？</p>',
+        onOk: () => {
+          this.creadListAll()
+        },
+        onCancel: () => {
+          this.handleCancel()
+        }
+      });
     },
     // 判断当前行是否选中
     isChecked (id) {
@@ -185,86 +184,86 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .RealTimeIndent {
     width: 100%;
     height: 100%;
-  }
-  // 模板
-  .fade{
-    width:100%;
-    height:100%;
-    background:rgba(0, 0, 0, 0.5);
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 99;
-  }
-  .model{
-    width: 400px;
-    height: 100px;
-    background: #fff;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    margin-left: -200px;
-    margin-top: -150px;
-    z-index: 999;
-    border-radius: 5px;
-  }
-  .model .creadlist{
-    font-size: 18px;
-    text-align: center;
-    margin-top: 8px;
-  }
-  .btomBtn{
-    width: 190px;
-    padding-top: 10px;
-    margin-left: 120px;
-    box-sizing: border-box;
-  }
-  .btn{
-    width: 80px !important;
-    margin-top: 10px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  .btn1{
-    background-color: dodgerblue;
-  }
-  .btn2{
-    background-color: red;
-  }
-  .deliveryBack{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 500px;
-    width: 100%;
-    z-index: 1;
-    background-color:  rgba(255,255,255,0.5);
-  }
-  .isdelivery{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: 100px auto;
-    width: 300px;
-    height: 120px;
-    z-index: 99;
-    background-color:  rgba(142,227,232);
-  }
-  .RealTimeIndent .table_user_list {
-    width: 100%;
-    height: auto;
-    border: 1px solid #ccc;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  .RealTimeIndent .user_table{
-    margin-top: 10px;
+    // 模板
+    .fade{
+      width:100%;
+      height:100%;
+      background:rgba(0, 0, 0, 0.5);
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 99;
+    }
+    .model{
+      width: 400px;
+      height: 100px;
+      background: #fff;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      margin-left: -200px;
+      margin-top: -150px;
+      z-index: 999;
+      border-radius: 5px;
+    }
+    .model .creadlist{
+      font-size: 18px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .btomBtn{
+      width: 190px;
+      padding-top: 10px;
+      margin-left: 120px;
+      box-sizing: border-box;
+    }
+    .btn{
+      width: 80px !important;
+      margin-top: 10px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .btn1{
+      background-color: dodgerblue;
+    }
+    .btn2{
+      background-color: red;
+    }
+    .deliveryBack{
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 500px;
+      width: 100%;
+      z-index: 1;
+      background-color:  rgba(255,255,255,0.5);
+    }
+    .isdelivery{
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: 100px auto;
+      width: 300px;
+      height: 120px;
+      z-index: 99;
+      background-color:  rgba(142,227,232);
+    }
+    .RealTimeIndent .table_user_list {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .RealTimeIndent .user_table{
+      margin-top: 10px;
+    }
   }
 </style>

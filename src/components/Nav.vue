@@ -1,6 +1,6 @@
 <template>
-  <div class="layout">
-    <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto',minWidth:'175px',maxWidth:'180px'}" :class="{ 'isColse' : isChange }">
+  <div class="nav">
+    <Sider :class="{ 'isColse' : isChange }">
       <Menu  theme="dark" width="auto">
         <Submenu name="1">
           <template slot="title" >
@@ -111,35 +111,35 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .layout{
+  .nav{
     position:relative;
     height:100%;
-    border: 1px solid #d7dde4;
     background: #f5f7f9;
-    border-radius: 4px;
-    float: left !important;
-  }
-  .layout .Nav_line{
-    width: 5px;
-    position:absolute;
-    left:0;
-    top:0;
-    right:0;
-    bottom:0;
-    overflow-y:auto;
-    overflow-x:hidden;
-    background-color: #0c414a;
-    border: 1px solid #0c414a;
-    margin-left: 170px;
-  }
-  .layout-header-bar{
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
-  }
-  .isClose{
-    width: 78px!important;
-  }
-  .active{
-    background-color: darkorange !important;
+    .ivu-layout-sider{
+      height: 100%;
+    }
+    .nav .Nav_line{
+      width: 5px;
+      position:absolute;
+      left:0;
+      top:0;
+      right:0;
+      bottom:0;
+      overflow-y:auto;
+      overflow-x:hidden;
+      background-color: #0c414a;
+      border: 1px solid #0c414a;
+      margin-left: 170px;
+    }
+    .layout-header-bar{
+      background: #fff;
+      box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    }
+    .isClose{
+      width: 78px!important;
+    }
+    .active{
+      background-color: darkorange !important;
+    }
   }
 </style>
